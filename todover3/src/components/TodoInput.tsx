@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import { Form, Button } from "react-bootstrap";
 
 interface props {
@@ -8,20 +8,16 @@ interface props {
 }
 
 const TodoInput: React.FC<props> = ({ todo, setTodo, handleAdd }) => {
-//   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-//     setTodo(e.currentTarget.value);
-//   };
-
-  const handleSubmit = (e:React.FormEvent) =>{
-      if(todo.length > 3){
-        e.preventDefault();
-        handleAdd(e);
-        setTodo("");
-      }else{
-        e.preventDefault();
-        alert("To-do item must be more than 3 characters. Please try again.");
-      }
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    if (todo.length > 3) {
+      e.preventDefault();
+      handleAdd(e);
+      setTodo("");
+    } else {
+      e.preventDefault();
+      alert("To-do item must be more than 3 characters. Please try again.");
+    }
+  };
 
   return (
     <div className="TodoInput">
@@ -31,12 +27,17 @@ const TodoInput: React.FC<props> = ({ todo, setTodo, handleAdd }) => {
             type="text"
             placeholder="Jot down something you want to accomplish!"
             onChange={(e) => {
-                setTodo(e.target.value);
+              setTodo(e.target.value);
             }}
             value={todo}
           />
         </Form.Group>
-        <Button type="submit" onClick={() => {handleSubmit}}>
+        <Button
+          type="submit"
+          onClick={
+            handleSubmit
+          }
+        >
           Add
         </Button>
       </Form>
